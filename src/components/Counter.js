@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment, incrementByAmount } from './features/counterSlice'
+import { decrement, increment, incrementByAmount } from '../features/counterSlice'
 
 function Counter() {
     // Call useSelector to grab the current value of our state variable
     // from the store, and assign it to a variable named "count"
-    const count = useSelector((state) => state.value)
+    const count = useSelector((state) => state.counter.value)
     // And include the useDispatch hook...
     const dispatch = useDispatch()    
 
@@ -16,15 +16,15 @@ function Counter() {
         setInput('')
     }
 
-
     return (
         <div>
-            <h1>{count}</h1>
+            <h1>Counter</h1>
+            <h2>{count}</h2>
             <div>
-                <button onClick={() => dispatch(incrementByAmount(5))}>+5</button>
-                <button onClick={() => dispatch(increment())}>+</button>
-                <button onClick={() => dispatch(decrement())}>-</button>
                 <button onClick={() => dispatch(incrementByAmount(-5))}>-5</button>
+                <button onClick={() => dispatch(decrement())}>-</button>
+                <button onClick={() => dispatch(increment())}>+</button>
+                <button onClick={() => dispatch(incrementByAmount(5))}>+5</button>
             </div>
             <div>
                 <input type='number' placeholder='Custom Amount' value={input} onChange={(e) => setInput(e.target.value)} />
